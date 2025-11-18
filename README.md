@@ -1,1 +1,2 @@
-# final_project_sensor_implementation
+# Walk the Pupper (Force Sensor Implentation)
+
