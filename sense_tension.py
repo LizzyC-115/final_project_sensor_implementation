@@ -1,31 +1,32 @@
-"""
-Hardware pipeline: Tension Sensor -> HX711 Amplifier -> Raspberry Pi
-"""
-import gpio         # read GPIO pins
-import hx711        # access amplifier, HX711
+from machine import Pin
 import time
+from hx711 import HX711
+from picozero import pico_led
 
-DAT_PIN = 5         # connected to DAT pin from HX711       
-CLK_PIN = 6         # connected to CLK pin from HX711
+# -----------------------------
+# Setup HX711 pins
+# -----------------------------
+DT_PIN = Pin(15, Pin.IN)   # DOUT
+SCK_PIN = Pin(14, Pin.OUT) # SCK
 
-CALIBRATION_FACTOR = 220.0  # adjust based on measurement (how much to amplify)
+hx = HX711(SCK_PIN, DT_PIN)
+hx.set_scale(1000)   # initial scale factor (calibrate later)
+hx.tare()            # tare the scale
 
-hx = hx711.HX711(dout_pin=DAT_PIN, pd_sck_pin=CLK_PIN)
-hx.reset()
-hx.tare()           # set baseline
+print("Tare done. Start weighing...\n")
 
-print("Starting measurements...")
-
+# -----------------------------
+# Main loop
+# -----------------------------
 try:
+#     pico_led.blink()
     while True:
-        raw = hx.get_weight_mean(10)
-        print(f"Raw weight: {raw:.2f}")
-        weight = raw / CALIBRATION_FACTOR
-        print(f"Calibrated Weight (kg): {weight:.2f}")
+        weight = hx.get_units()
+        print("Weight: {:.2f} g".format(weight))
         time.sleep(0.2)
 
 except KeyboardInterrupt:
-    print("Stopping measurements...")
+    print("\nStopped by user.")
 
 
 
