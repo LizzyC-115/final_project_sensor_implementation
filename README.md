@@ -35,10 +35,9 @@ Pupper robot
 The system uses two orthogonal load cells to detect the vector of applied external force. Combined, they allow Pupper to sense:
 
 - Positive/negative force on the x-axis → turn left/right
+- Positive/negative force on the y-axis → influence forward/backward mov
 
 
 # Pipeline
 Raspberry Pi Pico W (sense_tension.py) -> Raspberry Pi 4 (read_data.py) -> Pupper
 
-
-- Positive/negative force on the y-axis → influence forward/backward mov
