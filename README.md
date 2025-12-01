@@ -36,4 +36,13 @@ The system uses two orthogonal load cells to detect the vector of applied extern
 
 - Positive/negative force on the x-axis → turn left/right
 
+
+# Pipeline
+
+Raspberry Pi Pico W (sense_tension.py) -> Raspberry Pi 4 (read_data.py) -> Pupper
+
+
+
+
+
 - Positive/negative force on the y-axis → influence forward/backward movement
