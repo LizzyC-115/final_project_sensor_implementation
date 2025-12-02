@@ -9,7 +9,8 @@ import time
 ser = serial.Serial('/dev/ttyAMA10', 115200, timeout=1)
 
 while True:
-    print("Starting to read data...")
+    # print("Starting to read data...")
+    print(ser.readline())
     line = ser.readline().decode('utf-8').strip()
     print(line)
     time.sleep(0.5)
