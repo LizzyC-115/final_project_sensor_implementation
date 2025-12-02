@@ -6,7 +6,7 @@ import serial
 import time
 
 # Update port if needed: check with `ls /dev/ttyACM*` before running
-ser = serial.Serial('/dev/ttyAMA10', 115200, timeout=1)
+ser = serial.Serial('/dev/ttyACM0', 115200, timeout=1)
 
 while True:
     # print("Starting to read data...")
